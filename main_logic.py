@@ -79,7 +79,7 @@ def find_most_similar(needle, haystack):
     ]
     return sorted(zip(similarity_scores, range(len(haystack))), reverse=True)
 
-def get_response(paragraphs, embeddings, prompt, model="mistral"):
+def get_response(paragraphs, embeddings, prompt, model="llama3"):
     SYSTEM_PROMPT = """You are a helpful reading assistant who answers questions 
         based on snippets of text provided in context. Answer only using the context provided, 
         being as concise as possible. If you're unsure, just say that you don't know.
