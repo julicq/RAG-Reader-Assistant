@@ -1,0 +1,6 @@
+streamlit 
+ollama 
+numpy 
+pdfplumber 
+python-docx 
+PyPDF2
