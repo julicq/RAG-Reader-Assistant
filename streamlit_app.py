@@ -5,6 +5,37 @@ import time
 def main():
     st.title("Text Analysis and Q&A Bot")
 
+    # Custom CSS
+    st.markdown(
+        """
+        <style>
+        .chat-container {
+            background-color: #f0f0f5;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .chat-message {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 5px 0;
+        }
+        .chat-message.user {
+            background-color: #d1e7dd;
+            text-align: right;
+        }
+        .chat-message.bot {
+            background-color: #fff3cd;
+        }
+        .chat-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        </style>
+        """, unsafe_allow_html=True
+    )
+
     uploaded_file = st.file_uploader("Choose a file", type=["txt", "pdf", "doc", "docx"])
     if uploaded_file is not None:
         file_extension = uploaded_file.name.split('.')[-1]
@@ -38,10 +69,11 @@ def main():
         st.text_input("What do you want to know?", key="user_input", on_change=handle_query)
 
         # Display chat history
+        st.markdown("<div class='chat-container'>", unsafe_allow_html=True)
         for chat in st.session_state.chat_history:
-            st.write(f"**User:** {chat['user']}")
-            st.write(f"**Bot:** {chat['bot']}")
-            st.write("---")
+            st.markdown(f"<div class='chat-message user'>{chat['user']}</div>", unsafe_allow_html=True)
+            st.markdown(f"<div class='chat-message bot'>{chat['bot']}</div>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
